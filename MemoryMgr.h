@@ -73,7 +73,7 @@ namespace Memory
 	inline void		Patch(AT address, std::initializer_list<uint8_t> list)
 	{
 		static_assert(sizeof(AT) == sizeof(uintptr_t), "AT must be pointer sized");
-		std::memcpy(reinterpret_cast<void*>(address), list.begin(), list.size() * sizeof(decltype(list)::value_type));
+		std::memcpy(reinterpret_cast<void*>(address), list.begin(), list.size() * sizeof(typename decltype(list)::value_type));
 	}
 
 	template<typename Var, typename AT>
@@ -173,7 +173,7 @@ namespace Memory
 
 	inline bool MemEquals(uintptr_t address, std::initializer_list<uint8_t> val)
 	{
-		return std::memcmp(reinterpret_cast<const void*>(address), val.begin(), val.size() * sizeof(decltype(val)::value_type)) == 0;
+		return std::memcmp(reinterpret_cast<const void*>(address), val.begin(), val.size() * sizeof(typename decltype(val)::value_type)) == 0;
 	}
 
 	template<typename AT>
